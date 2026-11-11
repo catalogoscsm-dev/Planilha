@@ -1,0 +1,266 @@
+/* ============================================================
+   app.css — layout do app (login, painel, topo do editor)
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--fonte);
+  color: var(--cor-texto);
+  background: var(--cor-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--cor-primaria); text-decoration: none; }
+button { font-family: inherit; }
+
+.oculto { display: none !important; }
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border: 1px solid transparent; border-radius: var(--radius-sm);
+  padding: .6rem 1.1rem; font-size: .95rem; font-weight: 600;
+  cursor: pointer; transition: all var(--t-fast); white-space: nowrap;
+  background: var(--cor-surface-2); color: var(--cor-texto);
+}
+.btn:hover { background: var(--cor-borda); }
+.btn:focus-visible { outline: none; box-shadow: var(--sombra-foco); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-primario {
+  background: var(--grad-primario); color: #fff;
+  box-shadow: var(--sombra-sm);
+}
+.btn-primario:hover { filter: brightness(1.06); background: var(--grad-primario); }
+
+.btn-perigo { background: transparent; color: var(--cor-perigo); border-color: transparent; }
+.btn-perigo:hover { background: rgba(217, 48, 37, .1); }
+
+.btn-ghost { background: transparent; }
+.btn-ghost:hover { background: rgba(255, 255, 255, .15); }
+
+.btn-icone {
+  padding: .5rem; width: 38px; height: 38px; border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+/* ============================================================
+   TELA DE LOGIN / CADASTRO
+   ============================================================ */
+#view-auth {
+  min-height: 100%;
+  display: grid; grid-template-columns: 1.1fr 1fr;
+}
+#view-auth .auth-marca {
+  background: var(--grad-splash);
+  color: #fff; padding: 3rem;
+  display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+  position: relative; overflow: hidden;
+}
+#view-auth .auth-marca::after {
+  content: ""; position: absolute; inset: -40% -20% auto auto;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.18), transparent 60%);
+}
+.auth-logo {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em;
+}
+.auth-logo .quadro {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,.18); display: grid; place-items: center;
+  font-size: 1.3rem;
+}
+.auth-marca h1 { font-size: 2.6rem; line-height: 1.05; margin: .5rem 0 0; font-weight: 800; }
+.auth-marca p { font-size: 1.1rem; opacity: .9; max-width: 34ch; }
+.auth-recursos { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.auth-recursos span {
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2);
+  padding: .35rem .75rem; border-radius: var(--radius-pill); font-size: .85rem;
+}
+
+#view-auth .auth-form-area {
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+}
+.auth-card {
+  width: 100%; max-width: 380px;
+  background: var(--cor-surface); border: 1px solid var(--cor-borda);
+  border-radius: var(--radius); padding: 2rem; box-shadow: var(--sombra-md);
+}
+.auth-card h2 { margin: 0 0 .3rem; font-size: 1.5rem; }
+.auth-card .sub { color: var(--cor-texto-suave); margin: 0 0 1.5rem; font-size: .95rem; }
+
+.campo { margin-bottom: 1rem; }
+.campo label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+.campo input {
+  width: 100%; padding: .7rem .85rem; font-size: .95rem;
+  border: 1px solid var(--cor-borda-forte); border-radius: var(--radius-sm);
+  background: var(--cor-surface-2); color: var(--cor-texto); transition: all var(--t-fast);
+}
+.campo input:focus { outline: none; border-color: var(--cor-primaria); box-shadow: var(--sombra-foco); }
+
+.auth-card .btn-primario { width: 100%; padding: .75rem; margin-top: .3rem; }
+.auth-troca { text-align: center; margin-top: 1.2rem; font-size: .9rem; color: var(--cor-texto-suave); }
+.auth-troca a { font-weight: 600; cursor: pointer; }
+.auth-erro {
+  background: rgba(217, 48, 37, .1); color: var(--cor-perigo);
+  border: 1px solid rgba(217, 48, 37, .25); border-radius: var(--radius-sm);
+  padding: .6rem .8rem; font-size: .88rem; margin-bottom: 1rem;
+}
+
+/* ============================================================
+   PAINEL (lista de planilhas)
+   ============================================================ */
+.topbar {
+  background: var(--grad-topo); color: #fff;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 1.2rem; height: 60px; box-shadow: var(--sombra-sm);
+}
+.topbar .marca { display: flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.2rem; }
+.topbar .marca .quadro {
+  width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.2);
+  display: grid; place-items: center; font-size: 1.1rem;
+}
+.topbar .espaco { flex: 1; }
+.topbar .usuario { display: flex; align-items: center; gap: .6rem; font-size: .9rem; }
+.topbar .avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,.25); display: grid; place-items: center;
+  font-weight: 700; text-transform: uppercase;
+}
+
+.painel { max-width: 1120px; margin: 0 auto; padding: 2rem 1.2rem; }
+.painel-cab { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+.painel-cab h2 { margin: 0; font-size: 1.5rem; }
+.painel-cab .busca input {
+  padding: .6rem .9rem; border: 1px solid var(--cor-borda); border-radius: var(--radius-pill);
+  background: var(--cor-surface); min-width: 240px; font-size: .9rem;
+}
+
+.grade {
+  display: grid; gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+.card {
+  background: var(--cor-surface); border: 1px solid var(--cor-borda);
+  border-radius: var(--radius); overflow: hidden; cursor: pointer;
+  transition: all var(--t-med); display: flex; flex-direction: column;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--sombra-lg); border-color: var(--azul-300); }
+.card .preview {
+  height: 120px; background:
+    repeating-linear-gradient(0deg, transparent, transparent 19px, var(--cor-borda) 19px, var(--cor-borda) 20px),
+    repeating-linear-gradient(90deg, transparent, transparent 29px, var(--cor-borda) 29px, var(--cor-borda) 30px),
+    var(--grad-primario);
+  background-blend-mode: overlay, overlay, normal;
+  position: relative;
+}
+.card .preview .ico { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.card .corpo { padding: .85rem 1rem; }
+.card .titulo { font-weight: 600; font-size: .98rem; margin: 0 0 .2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .meta { font-size: .78rem; color: var(--cor-texto-suave); display: flex; align-items: center; gap: .4rem; }
+.card .selo {
+  font-size: .68rem; font-weight: 700; padding: .12rem .5rem; border-radius: var(--radius-pill);
+  background: var(--azul-100); color: var(--azul-700);
+}
+.card .acoes { display: flex; gap: .2rem; padding: 0 .6rem .6rem; }
+.card .acoes .btn-icone { width: 32px; height: 32px; font-size: 1rem; color: var(--cor-texto-suave); }
+.card .acoes .btn-icone:hover { background: var(--cor-surface-2); color: var(--cor-primaria); }
+
+.card-novo {
+  border: 2px dashed var(--cor-borda-forte); background: var(--cor-surface-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .5rem; min-height: 200px; color: var(--cor-primaria); font-weight: 600;
+}
+.card-novo:hover { border-color: var(--cor-primaria); background: var(--azul-100); }
+.card-novo .mais { font-size: 2rem; line-height: 1; }
+
+.vazio { text-align: center; color: var(--cor-texto-suave); padding: 3rem 1rem; }
+
+/* ============================================================
+   TOPO DO EDITOR
+   ============================================================ */
+.editor-topbar {
+  background: var(--grad-topo); color: #fff;
+  display: flex; align-items: center; gap: .6rem;
+  padding: 0 .8rem; height: 48px; position: fixed; inset: 0 0 auto 0; z-index: 50;
+}
+.editor-topbar .btn-icone { color: #fff; }
+.editor-topbar .btn-icone:hover { background: rgba(255,255,255,.18); }
+.editor-topbar .titulo-planilha {
+  background: transparent; border: 1px solid transparent; color: #fff;
+  font-size: 1.05rem; font-weight: 600; padding: .3rem .5rem; border-radius: 8px;
+  min-width: 120px; max-width: 360px;
+}
+.editor-topbar .titulo-planilha:hover { background: rgba(255,255,255,.12); }
+.editor-topbar .titulo-planilha:focus { outline: none; background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
+.editor-topbar .status { font-size: .82rem; opacity: .85; min-width: 90px; }
+.editor-topbar .espaco { flex: 1; }
+.editor-topbar .btn { padding: .4rem .9rem; }
+.editor-topbar .btn-salvar { background: rgba(255,255,255,.18); color: #fff; border-color: rgba(255,255,255,.3); }
+.editor-topbar .btn-salvar:hover { background: rgba(255,255,255,.3); }
+
+#luckysheet {
+  position: fixed; inset: 48px 0 0 0;
+}
+
+/* ============================================================
+   MODAL (compartilhar) + TOASTS
+   ============================================================ */
+.modal-fundo {
+  position: fixed; inset: 0; background: rgba(7, 35, 63, .55);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+  padding: 1rem; backdrop-filter: blur(2px);
+}
+.modal {
+  background: var(--cor-surface); border-radius: var(--radius);
+  width: 100%; max-width: 460px; box-shadow: var(--sombra-lg); overflow: hidden;
+}
+.modal-cab { padding: 1.2rem 1.4rem; border-bottom: 1px solid var(--cor-borda); display: flex; align-items: center; justify-content: space-between; }
+.modal-cab h3 { margin: 0; font-size: 1.2rem; }
+.modal-corpo { padding: 1.2rem 1.4rem; }
+.modal-linha-add { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.modal-linha-add input { flex: 1; padding: .6rem .7rem; border: 1px solid var(--cor-borda-forte); border-radius: var(--radius-sm); }
+.modal-linha-add select { border: 1px solid var(--cor-borda-forte); border-radius: var(--radius-sm); padding: 0 .5rem; background: var(--cor-surface); }
+.colab-lista { display: flex; flex-direction: column; gap: .5rem; max-height: 240px; overflow: auto; }
+.colab-item { display: flex; align-items: center; gap: .6rem; padding: .5rem .6rem; border-radius: var(--radius-sm); background: var(--cor-surface-2); }
+.colab-item .email { flex: 1; font-size: .9rem; word-break: break-all; }
+.colab-item .perm { font-size: .78rem; color: var(--cor-texto-suave); }
+
+#toasts {
+  position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; gap: .5rem; z-index: 200; align-items: center;
+}
+.toast {
+  background: var(--azul-900); color: #fff; padding: .7rem 1.1rem;
+  border-radius: var(--radius-pill); font-size: .9rem; box-shadow: var(--sombra-md);
+  animation: toast-in .2s ease;
+}
+.toast.erro { background: var(--cor-perigo); }
+.toast.ok { background: var(--cor-sucesso); }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---- Banner de conflito de edição ---- */
+#conflito-banner {
+  position: fixed; top: 48px; left: 0; right: 0; z-index: 45;
+  background: #7c3f00; color: #fff;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: .55rem 1rem; gap: .6rem; font-size: .9rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.conflito-acoes { display: flex; gap: .5rem; }
+.conflito-acoes button {
+  padding: .3rem .75rem; border-radius: 8px; font-size: .82rem; font-weight: 600;
+  cursor: pointer; border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.18); color: #fff; transition: background .15s;
+}
+.conflito-acoes button:hover { background: rgba(255,255,255,.32); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 760px) {
+  #view-auth { grid-template-columns: 1fr; }
+  #view-auth .auth-marca { display: none; }
+}

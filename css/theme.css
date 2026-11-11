@@ -1,0 +1,77 @@
+/* ============================================================
+   theme.css — PALETA DEGRADÊ AZUL (ponto central de customização)
+   Troque os valores abaixo para mudar toda a identidade visual.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* --- Escala de azul --- */
+  --azul-900: #07233f;
+  --azul-800: #0b3a6f;
+  --azul-700: #1259a8;
+  --azul-600: #1a73e8;
+  --azul-500: #2b86f0;
+  --azul-400: #4aa0ff;
+  --azul-300: #8cc3ff;
+  --azul-200: #bfdcff;
+  --azul-100: #e3f0ff;
+
+  /* --- Degradês (o "azul degradê" pedido) --- */
+  --grad-primario: linear-gradient(135deg, #1259a8 0%, #1a73e8 45%, #2b86f0 100%);
+  --grad-topo:     linear-gradient(90deg, #0b3a6f 0%, #1259a8 50%, #1a73e8 100%);
+  --grad-splash:   linear-gradient(160deg, #07233f 0%, #0b3a6f 45%, #1a73e8 120%);
+
+  /* --- Superfícies / fundo --- */
+  --cor-bg:         #eef4fc;
+  --cor-surface:    #ffffff;
+  --cor-surface-2:  #f3f7fd;
+  --cor-borda:      #d7e3f3;
+  --cor-borda-forte:#b9ceea;
+
+  /* --- Texto --- */
+  --cor-texto:       #10233b;
+  --cor-texto-suave: #5a6f8a;
+  --cor-texto-fraco: #8aa0bc;
+  --cor-texto-inv:   #ffffff;
+
+  /* --- Acentos --- */
+  --cor-primaria:       #1a73e8;
+  --cor-primaria-hover: #1259a8;
+  --cor-primaria-rgb:   26, 115, 232;
+  --cor-perigo:         #d93025;
+  --cor-perigo-hover:   #b5271d;
+  --cor-sucesso:        #188038;
+
+  /* --- Sombras --- */
+  --sombra-sm: 0 1px 2px rgba(7, 35, 63, .08);
+  --sombra-md: 0 6px 20px rgba(7, 35, 63, .12);
+  --sombra-lg: 0 18px 50px rgba(7, 35, 63, .22);
+  --sombra-foco: 0 0 0 3px rgba(var(--cor-primaria-rgb), .25);
+
+  /* --- Geometria --- */
+  --radius:      14px;
+  --radius-sm:   10px;
+  --radius-pill: 999px;
+
+  /* --- Tipografia e transições --- */
+  --fonte: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --t-fast: .15s ease;
+  --t-med:  .3s ease;
+}
+
+/* ------------------------------------------------------------
+   Tema escuro (bônus de customização — ative com
+   document.documentElement.dataset.theme = 'dark')
+   ------------------------------------------------------------ */
+[data-theme="dark"] {
+  --cor-bg:        #0a1726;
+  --cor-surface:   #0f2136;
+  --cor-surface-2: #13273f;
+  --cor-borda:     #1d3b5c;
+  --cor-borda-forte:#2a4f78;
+  --cor-texto:       #e8f1ff;
+  --cor-texto-suave: #a7bdda;
+  --cor-texto-fraco: #6f87a8;
+  --grad-splash: linear-gradient(160deg, #060f1c 0%, #0b2744 60%, #1a73e8 140%);
+}

@@ -1,0 +1,58 @@
+/* ============================================================
+   luckysheet-blue.css — aproxima o acento do Luckysheet do
+   nosso degradê azul. Carregue DEPOIS do CSS do Luckysheet.
+   Observação: a borda da seleção de células é desenhada em
+   canvas pelo próprio Luckysheet e não é alterável por CSS.
+   ============================================================ */
+
+/* Aba de página ativa */
+.luckysheet-sheets-item.luckysheet-sheets-item-active,
+.luckysheet-sheets-item.luckysheet-sheets-item-active .luckysheet-sheets-item-name {
+  color: var(--azul-700) !important;
+  font-weight: 600;
+}
+.luckysheet-sheets-item.luckysheet-sheets-item-active {
+  box-shadow: inset 0 -2px 0 var(--azul-600);
+}
+
+/* Botão "+" de adicionar página */
+.luckysheet-sheets-add:hover,
+.luckysheet-sheets-m:hover { color: var(--azul-600) !important; }
+
+/* Botões da barra de ferramentas (hover / ativo) */
+.luckysheet-toolbar-button:hover,
+.luckysheet-toolbar-menu-button:hover,
+.luckysheet-toolbar-combo-button:hover {
+  background: var(--azul-100) !important;
+  border-color: var(--azul-200) !important;
+}
+.luckysheet-toolbar-button.luckysheet-toolbar-button-active,
+.luckysheet-toolbar-menu-button.luckysheet-toolbar-menu-button-active {
+  background: var(--azul-100) !important;
+  border-color: var(--azul-300) !important;
+}
+
+/* Itens de menu selecionados */
+.luckysheet-cols-menuitem:hover,
+.luckysheet-mousedown-cancel:hover {
+  background: var(--azul-100) !important;
+}
+
+/* Botões primários de diálogos do Luckysheet */
+.luckysheet-modal-dialog-buttons .button-primary,
+.luckysheet-modal-dialog-buttons button.btn-primary {
+  background: var(--grad-primario) !important;
+  border-color: var(--azul-700) !important;
+  color: #fff !important;
+}
+
+/* Realce de cabeçalho de linha/coluna selecionado */
+.luckysheet-selected-highlight,
+.luckysheet-col-rows-selected-boeder { background: rgba(var(--cor-primaria-rgb), .12) !important; }
+
+/* Links e destaques diversos */
+#luckysheet .luckysheet a { color: var(--azul-600) !important; }
+
+/* Barra de fórmula (fx) */
+#luckysheet-rich-text-editor:focus,
+.luckysheet-wa-editor:focus { outline-color: var(--azul-600); }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANILHA — suas planilhas em azul</title>
+  <script>
+    (() => { const t = localStorage.getItem('planilha-tema'); if (t) document.documentElement.dataset.theme = t; })();
+  </script>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- ============ CARREGANDO ============ -->
+  <div id="view-carregando" style="min-height:100%;display:grid;place-items:center;color:var(--cor-texto-suave)">
+    Carregando…
+  </div>
+
+  <!-- ============ LOGIN / CADASTRO ============ -->
+  <section id="view-auth" class="oculto">
+    <div class="auth-marca">
+      <div class="auth-logo"><span class="quadro">▦</span> PLANILHA</div>
+      <h1>Suas planilhas,<br>em azul.</h1>
+      <p>Planilhas particulares para você e seus colaboradores — fórmulas, formatação e gráficos, na nuvem.</p>
+      <div class="auth-recursos">
+        <span>✶ Fórmulas</span><span>🎨 Formatação</span><span>📊 Gráficos</span><span>👥 Colaboradores</span>
+      </div>
+    </div>
+    <div class="auth-form-area">
+      <div class="auth-card">
+        <h2 id="auth-titulo">Entrar</h2>
+        <p class="sub" id="auth-sub">Acesse suas planilhas.</p>
+        <div id="auth-erro" class="auth-erro oculto"></div>
+        <form id="auth-form">
+          <div class="campo">
+            <label for="auth-email">E-mail</label>
+            <input id="auth-email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+          </div>
+          <div class="campo">
+            <label for="auth-senha">Senha</label>
+            <input id="auth-senha" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required>
+          </div>
+          <button type="submit" class="btn btn-primario" id="auth-botao">Entrar</button>
+        </form>
+        <div class="auth-troca">
+          <span id="auth-troca-txt">Não tem conta?</span>
+          <a id="auth-troca-link">Cadastre-se</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAINEL ============ -->
+  <section id="view-painel" class="oculto">
+    <header class="topbar">
+      <div class="marca"><span class="quadro">▦</span> PLANILHA</div>
+      <div class="espaco"></div>
+      <div class="usuario">
+        <span id="painel-email"></span>
+        <div class="avatar" id="painel-avatar">?</div>
+        <button class="btn btn-ghost" id="btn-logout" title="Sair">Sair</button>
+      </div>
+    </header>
+
+    <main class="painel">
+      <div class="painel-cab">
+        <h2>Minhas planilhas</h2>
+        <div class="busca"><input id="painel-busca" type="search" placeholder="Buscar planilha…"></div>
+      </div>
+      <div class="grade" id="painel-grade"></div>
+    </main>
+  </section>
+
+  <div id="toasts"></div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
