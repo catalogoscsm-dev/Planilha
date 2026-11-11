@@ -5,8 +5,8 @@
 
 const CONFIG = {
   /* --- Supabase (preencha com os dados do seu projeto) --- */
-  supabaseUrl: 'https://SEU-PROJETO.supabase.co',
-  supabaseAnonKey: 'SUA-ANON-KEY-AQUI',
+  supabaseUrl: 'https://ibwttvcbhtejuekokzxx.supabase.co',
+  supabaseAnonKey: 'sb_publishable_BnYYKCmuwnDXESaZC8_KVg_ps1fYgin',
 
   /* --- Identidade do app --- */
   nomeApp: 'PLANILHA',
