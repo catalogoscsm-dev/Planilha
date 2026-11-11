@@ -19,6 +19,8 @@ create table if not exists public.planilhas (
 );
 -- Para deployments já existentes (idempotente)
 alter table public.planilhas add column if not exists versao int not null default 1;
+-- owner_id recebe auth.uid() automaticamente no INSERT quando não informado
+alter table public.planilhas alter column owner_id set default auth.uid();
 
 create index if not exists planilhas_owner_idx on public.planilhas(owner_id);
 
@@ -212,7 +214,9 @@ alter table public.colaboradores enable row level security;
 -- ---- planilhas ----
 drop policy if exists planilhas_select on public.planilhas;
 create policy planilhas_select on public.planilhas
-  for select using (public.pode_ver_planilha(id));
+  -- owner_id = auth.uid() garante que o dono veja a linha no INSERT…RETURNING,
+  -- pois pode_ver_planilha() (SECURITY DEFINER) não enxerga a linha recém-criada.
+  for select using (owner_id = auth.uid() or public.pode_ver_planilha(id));
 
 drop policy if exists planilhas_insert on public.planilhas;
 create policy planilhas_insert on public.planilhas
